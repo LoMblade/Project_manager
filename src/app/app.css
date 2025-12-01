@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* CARD WELCOME */
+.welcome-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.welcome-card .left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.welcome-card .avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e0e7ff;
+}
+
+.welcome-card h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  ;
+  color: #1e293b;
+}
+
+.welcome-card p {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.divider {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #cbd5e1, transparent);
+  height: 80px;
+}
+
+.welcome-card .right {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-block;
+  padding: 12px 28px;
+  background: 28px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.pill:hover {
+  background: #3b82f6;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(59,130,246,0.3);
+}
+
+/* Nút active */
+.router-link-active.pill {
+  background: #3b82f6;
+  color: white;
+}
+
+/* CONTENT */
+.router-container {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  min-height: 70vh;
+}

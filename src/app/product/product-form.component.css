@@ -1,0 +1,98 @@
+/* ======================== CARD ======================== */
+.card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+.card-header {
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+  color: white;
+  border-bottom: none;
+}
+
+/* ======================== FORM CONTROL ======================== */
+.form-control,
+.form-select {
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  transition: all 0.25s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+}
+
+/* ======================== LABEL ======================== */
+label {
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* ======================== TEXT DANGER ======================== */
+.text-danger {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* ======================== IMAGE PREVIEW ======================== */
+.image-preview img {
+  transition: all 0.3s ease;
+  border: 3px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+.image-preview img:hover {
+  transform: scale(1.04);
+  border-color: #3b82f6;
+  box-shadow: 0 10px 25px rgba(59,130,246,0.25);
+}
+
+/* ======================== BUTTON GENERAL ======================== */
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 11px 22px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+/* ======================== BUTTON SUCCESS ======================== */
+.btn-success {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #15803d, #166534);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.35);
+}
+
+/* ======================== BUTTON OUTLINE PRIMARY ======================== */
+.btn-outline-primary {
+  border: 2px solid #3b82f6;
+  color: #2563eb;
+  background: white;
+}
+
+.btn-outline-primary:hover {
+  background: #3b82f6;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59,130,246,0.35);
+}

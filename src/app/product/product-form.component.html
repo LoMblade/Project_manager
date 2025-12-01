@@ -1,0 +1,87 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Chi tiết hàng hóa</h2>
+
+  <div class="row">
+    <!-- Cột trái: Form -->
+    <div class="col-md-7">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">
+          Thông tin chi tiết hàng hóa
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="row mb-3 align-items-center">
+              <div class="col-3 text-end"><strong>Nhóm hàng:</strong></div>
+              <div class="col-5">
+                <select class="form-select">
+                  <option>Phụ kiện</option>
+                  <option>Thực phẩm</option>
+                  <option>Đồ uống</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-info btn-sm">Thêm nhanh (F6)</button>
+              </div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-3 text-end"><strong>Mã hàng:</strong></div>
+              <div class="col-3"><input class="form-control" [(ngModel)]="product.code" name="code" required></div>
+              <div class="col-3 text-end"><strong>Mã vạch:</strong></div>
+              <div class="col-3"><input class="form-control" placeholder="456"></div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-3 text-end"><strong>Tên hàng:</strong></div>
+              <div class="col-9"><input class="form-control" [(ngModel)]="product.name" name="name" required></div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-3 text-end"><strong>Mô tả:</strong></div>
+              <div class="col-9"><input class="form-control" [(ngModel)]="product.description" name="description"></div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-3 text-end"><strong>Giá nhập:</strong></div>
+              <div class="col-3"><input type="number" class="form-control" [(ngModel)]="product.importPrice" name="importPrice"></div>
+              <div class="col-3 text-end"><strong>Giá bán:</strong></div>
+              <div class="col-3"><input type="number" class="form-control" [(ngModel)]="product.salePrice" name="salePrice"></div>
+            </div>
+
+            <div class="row mb-3 align-items-center">
+              <div class="col-3 text-end"><strong>Ghi chú:</strong></div>
+              <div class="col-9"><input class="form-control" placeholder="cắt lát ổ lớn bà con ơi"></div>
+            </div>
+
+            <div class="row mb-4 align-items-center">
+              <div class="col-3 text-end"><strong>Đơn vị gốc:</strong></div>
+              <div class="col-3"><input class="form-control" value="Cái" disabled></div>
+              <div class="col-3 text-end"><strong>Định mức tồn:</strong></div>
+              <div class="col-3"><input type="number" class="form-control" value="100" disabled></div>
+            </div>
+
+            <div class="text-center">
+              <button type="button" class="btn btn-secondary me-3" (click)="onCancel()">Trợ giúp (F1)</button>
+              <button type="submit" class="btn btn-success me-3 px-4">Chấp nhận (F8)</button>
+              <button type="button" class="btn btn-danger" (click)="onCancel()">Kết thúc (F12)</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cột phải: Ảnh -->
+    <div class="col-md-5">
+      <div class="card shadow-sm">
+        <div class="card-header bg-info text-white fw-bold">Ảnh sản phẩm</div>
+        <div class="card-body text-center">
+          <img src="https://i.imgur.com/wh860.jpg" alt="Sản phẩm" class="img-fluid rounded" style="max-height: 380px;">
+          <div class="mt-3">
+            <button class="btn btn-outline-success me-2">Chọn ảnh</button>
+            <button class="btn btn-outline-danger">Hủy ảnh</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
