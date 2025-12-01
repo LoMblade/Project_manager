@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product.model';
-import { PageableResponse, PageRequest } from '../models/pagination.model';
+import { PageRequest } from '../models/pagination.model';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 

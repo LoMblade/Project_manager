@@ -1,98 +1,214 @@
+/* ======================== CONTAINER ======================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
 /* ======================== CARD ======================== */
 .card {
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
   background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  margin-bottom: 24px;
+  overflow: hidden;
 }
 
 .card-header {
-  font-size: 1.15rem;
+  padding: 18px 24px;
+  font-size: 1.2rem;
   font-weight: 600;
-  padding: 16px 20px;
-  background: linear-gradient(135deg, #6366f1, #4338ca);
-  color: white;
-  border-bottom: none;
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #3730a3);
 }
 
-/* ======================== FORM CONTROL ======================== */
+.card-body {
+  padding: 28px 32px 28px calc(32px + 1.5cm); /* Thêm 1.5cm vào padding-left */
+}
+
+/* ======================== FORM ======================== */
+.form-row {
+  display: grid;
+  grid-template-columns: 160px 1fr; /* Giảm độ rộng label để cân đối hơn */
+  align-items: center;
+  gap: 24px; /* Tăng khoảng cách giữa label và input */
+  margin-bottom: 18px;
+  padding: 14px 20px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.form-row:hover {
+  border-color: #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.label-col {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+  text-align: center;
+  padding-right: 0;
+}
+
+.input-col {
+  width: 100%;
+}
+
+/* Trường đặc biệt có 2 cột input */
+.form-row.double-input {
+  grid-template-columns: 160px 1fr 140px 1fr; /* Label đầu tiên rộng hơn */
+  gap: 24px 20px;
+}
+
+.form-row.double-input .label-col {
+  text-align: center;
+}
+
+.form-row.double-input .label-col:nth-child(3) {
+  text-align: right;
+  padding-left: 8px;
+}
+
+.form-row.double-input .input-col-half {
+  width: 100%;
+}
+
 .form-control,
 .form-select {
-  border-radius: 10px;
-  padding: 12px 14px;
-  border: 1.5px solid #cbd5e1;
-  background: #f8fafc;
-  transition: all 0.25s ease;
+  width: 100%;
+  padding: 10px 1px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  font-size: 0.95rem;
+  transition: 0.2s;
 }
 
 .form-control:focus,
 .form-select:focus {
-  border-color: #3b82f6;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+  outline: none;
+}
+
+/* ======================== BUTTONS ======================== */
+.btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  min-width: 110px;
+  transition: 0.2s;
+}
+
+.btn-success { background: #10b981; color: white; }
+.btn-success:hover { background: #059669; }
+
+.btn-secondary { background: #6b7280; color: white; }
+.btn-secondary:hover { background: #4b5563; }
+
+.btn-danger { background: #ef4444; color: white; }
+.btn-danger:hover { background: #dc2626; }
+
+.btn-info { background: #3b82f6; color: white; }
+.btn-info:hover { background: #2563eb; }
+
+/* ======================== FORM ACTIONS ======================== */
+.form-actions {
+  margin-top: 32px;
+  padding: 24px 32px;
   background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* ======================== LABEL ======================== */
-label {
-  color: #334155;
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-/* ======================== TEXT DANGER ======================== */
-.text-danger {
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-/* ======================== IMAGE PREVIEW ======================== */
+/* ======================== IMAGE ======================== */
 .image-preview img {
-  transition: all 0.3s ease;
-  border: 3px solid #e2e8f0;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  max-width: 100%;
+  transition: 0.3s;
 }
 
 .image-preview img:hover {
-  transform: scale(1.04);
-  border-color: #3b82f6;
-  box-shadow: 0 10px 25px rgba(59,130,246,0.25);
+  transform: scale(1.03);
+  border-color: #4b5563;
 }
 
-/* ======================== BUTTON GENERAL ======================== */
-.btn {
-  border-radius: 10px;
-  font-weight: 600;
-  padding: 11px 22px;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+/* ======================== RESPONSIVE ======================== */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .card-body {
+    padding: 24px 20px 24px 40px; /* Giảm padding-left trên mobile */
+  }
+
+  .form-row {
+    grid-template-columns: 130px 1fr;
+    gap: 18px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+  }
+
+  .form-row.double-input {
+    grid-template-columns: 130px 1fr;
+  }
+
+  .label-col {
+    font-size: 0.9rem;
+    text-align: left;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
 }
 
-/* ======================== BUTTON SUCCESS ======================== */
-.btn-success {
-  background: linear-gradient(135deg, #16a34a, #15803d);
-  border: none;
-  color: white;
-}
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
 
-.btn-success:hover {
-  background: linear-gradient(135deg, #15803d, #166534);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.35);
-}
+  .card-body {
+    padding: 20px 16px 20px 24px; /* Giảm thêm padding-left */
+  }
 
-/* ======================== BUTTON OUTLINE PRIMARY ======================== */
-.btn-outline-primary {
-  border: 2px solid #3b82f6;
-  color: #2563eb;
-  background: white;
-}
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    margin-left: 0; /* Reset margin-left trên mobile */
+  }
 
-.btn-outline-primary:hover {
-  background: #3b82f6;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59,130,246,0.35);
+  .form-row.double-input {
+    grid-template-columns: 1fr;
+  }
+
+  .label-col {
+    text-align: right;
+    margin-bottom: 6px;
+  }
 }
