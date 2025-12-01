@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "code": "SP001",
+      "name": "Cơm tấm sườn bì chả",
+      "importPrice": 25000,
+      "salePrice": 35000,
+      "description": "Bộ PC - Peo Peo"
+    },
+    {
+      "id": "2",
+      "code": "SP002",
+      "name": "Bánh mì thịt nướng",
+      "importPrice": 12000,
+      "salePrice": 20000,
+      "description": "Giòn tan"
+    },
+    {
+      "id": "4764",
+      "code": "1234444",
+      "name": "ssssssss",
+      "importPrice": 123333,
+      "salePrice": 133333322222,
+      "description": "adddadadadada"
+    },
+    {
+      "id": "aade",
+      "code": "SP003",
+      "name": "Ối dồi ôi ảo thật đấy",
+      "importPrice": 12000,
+      "salePrice": 24000,
+      "description": "từ bé đến giờ"
+    },
+    {
+      "id": "38cc",
+      "code": "123",
+      "name": "",
+      "importPrice": 0,
+      "salePrice": 0,
+      "description": ""
+    },
+    {
+      "id": "adea",
+      "code": "213124124",
+      "name": "",
+      "importPrice": 0,
+      "salePrice": 0,
+      "description": ""
+    },
+    {
+      "id": "aa77",
+      "code": "đá",
+      "name": "fsdfsadf",
+      "importPrice": 5,
+      "salePrice": 0,
+      "description": "fwesdsf"
+    }
+  ]
+}

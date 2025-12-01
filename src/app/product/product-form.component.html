@@ -1,0 +1,121 @@
+<div class="container">
+  <h2 style="color: #1f2937; font-weight: 700; font-size: 2rem; margin-bottom: 2.5rem; text-align: center; letter-spacing: -0.025em;">Chi tiết hàng hóa</h2>
+
+  <div class="row">
+    <!-- Cột trái: Form -->
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header">
+          Thông tin chi tiết hàng hóa
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <!-- Nhóm hàng -->
+            <div class="form-row">
+              <div class="label-col indent-label">Nhóm hàng:</div>
+              <div class="input-col">
+                <select class="form-select">
+                  <option>Phụ kiện</option>
+                  <option>Thực phẩm</option>
+                  <option>Đồ uống</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Button Thêm nhanh -->
+            <div class="form-row">
+              <div class="input-col">
+                <button type="button" class="btn btn-info">Thêm nhanh</button>
+              </div>
+            </div>
+
+            <!-- Mã hàng & Mã vạch -->
+            <div class="form-row double-input">
+              <div class="label-col">Mã hàng:</div>
+              <div class="input-col-half">
+                <input class="form-control" [(ngModel)]="product.code" name="code" required placeholder="Nhập mã hàng">
+              </div>
+              <div class="label-col">Mã vạch:</div>
+              <div class="input-col-half">
+                <input class="form-control" placeholder="456">
+              </div>
+            </div>
+
+            <!-- Tên hàng -->
+            <div class="form-row">
+              <div class="label-col">Tên hàng:</div>
+              <div class="input-col">
+                <input class="form-control" [(ngModel)]="product.name" name="name" required placeholder="Nhập tên hàng hóa">
+              </div>
+            </div>
+
+            <!-- Mô tả -->
+            <div class="form-row">
+              <div class="label-col">Mô tả:</div>
+              <div class="input-col">
+                <input class="form-control" [(ngModel)]="product.description" name="description" placeholder="Mô tả chi tiết sản phẩm">
+              </div>
+            </div>
+
+            <!-- Giá nhập & Giá bán -->
+            <div class="form-row double-input">
+              <div class="label-col">Giá nhập:</div>
+              <div class="input-col-half">
+                <input type="number" class="form-control" [(ngModel)]="product.importPrice" name="importPrice" placeholder="0">
+              </div>
+              <div class="label-col">Giá bán:</div>
+              <div class="input-col-half">
+                <input type="number" class="form-control" [(ngModel)]="product.salePrice" name="salePrice" placeholder="0">
+              </div>
+            </div>
+
+            <!-- Ghi chú -->
+            <div class="form-row">
+              <div class="label-col">Ghi chú:</div>
+              <div class="input-col">
+                <input class="form-control" placeholder="Thông tin bổ sung">
+              </div>
+            </div>
+
+            <!-- Đơn vị gốc & Định mức tồn -->
+            <div class="form-row double-input">
+              <div class="label-col">Đơn vị gốc:</div>
+              <div class="input-col-half">
+                <input class="form-control" value="Cái" disabled>
+              </div>
+              <div class="label-col">Định mức tồn:</div>
+              <div class="input-col-half">
+                <input type="number" class="form-control" value="100" disabled>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" (click)="onCancel()">Trợ giúp</button>
+              <button type="submit" class="btn btn-success">Chấp nhận </button>
+              <button type="button" class="btn btn-danger" (click)="onCancel()">Kết thúc</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cột phải: Ảnh -->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+          Ảnh sản phẩm
+        </div>
+        <div class="card-body text-center">
+          <div class="image-preview">
+            <img src="https://i.imgur.com/wh860.jpg" alt="Sản phẩm" style="max-height: 320px;">
+          </div>
+          <div class="image-buttons">
+            <button class="btn btn-outline-success">Chọn ảnh</button>
+            <button class="btn btn-outline-danger">Hủy ảnh</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
