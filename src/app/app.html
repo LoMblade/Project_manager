@@ -1,31 +1,78 @@
-<div class="page-wrapper">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Demo - blade Style</title>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+<body>
 
-  <!-- CARD WELCOME -->
-  <section class="welcome-card">
-    <div class="left">
-      <div class="avatar">
-        <img src="/assets/13.png" alt="BLAZE" />
-      </div>
-
-      <div>
-        <h1>Xin chào BLAZE</h1>
-        <p>Welcome to Summon'Rift 🎉</p>
+  <!-- HEADER blade CHUẨN 100% -->
+  <header class="blade-header">
+    <!-- Top bar nhỏ -->
+    <div class="top-bar">
+      <div class="container top-links">
+        <div class="left-links">
+          <a href="#">Kênh Người Bán</a>
+          <a href="#">Trở thành Người quản lý víp bờ dồ</a>
+          <a href="#">Tải ứng dụng</a>
+          <a href="#">Kết nối</a>
+          <i class="bx bxl-facebook"></i>
+          <i class="bx bxl-instagram"></i>
+        </div>
+        <div class="right-links">
+          <a href="#"><i class="bx bx-bell"></i> Thông Báo</a>
+          <a href="#"><i class="bx bx-help-circle"></i> Hỗ Trợ</a>
+          <a href="#"><i class="bx bx-globe"></i> Tiếng Việt</a>
+          <a href="#">Đăng Ký</a>
+          <a href="#">Đăng Nhập</a>
+        </div>
       </div>
     </div>
 
-    <div class="divider"></div>
+    <!-- Thanh chính: Logo + Tìm kiếm + Giỏ hàng -->
+    <div class="main-bar">
+      <div class="container main-content">
+        <!-- Logo Blade -->
+        <div class="logo">
+          <h1>Blade</h1>
+        </div>
 
-    <div class="right">
-      <a class="pill" routerLink="/product/add">Thêm sản phẩm</a>
-      <a class="pill" routerLink="/product/list">Danh sách sản phẩm</a>
-      <a class="pill">Thống kê</a>
-      <a class="pill">Hướng dẫn</a>
+        <!-- Thanh tìm kiếm lớn ở giữa -->
+        <div class="search-bar">
+          <input type="text" placeholder="Bao ship 0Đ - Nhanh lên!" />
+          <button><i class="bx bx-search"></i></button>
+        </div>
+
+        <!-- Giỏ hàng -->
+        <div class="cart">
+          <a href="#" class="cart-icon">
+            <i class="bx bx-shopping-bag"></i>
+            <span class="cart-count">3</span>
+          </a>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <!-- CONTENT AREA -->
-  <section class="router-container">
+    <!-- Gợi ý tìm kiếm bên dưới -->
+    <div class="suggestions">
+      <div class="container">
+        <a href="#">Q1 tốt</a>
+        <a href="#">Q2 trúng rìa</a>
+        <a href="#">Q3 ác chưa kìa</a>
+        <a href="#">Đánh thường nội tại</a>
+        <a href="#">Và đó là</a>
+        <a href="#">Sô lô ciuu</a>
+        <a href="#">Dành cho xao chao mân</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nội dung chính của ứng dụng Angular -->
+  <div class="page-content">
     <router-outlet></router-outlet>
-  </section>
+  </div>
 
-</div>
+</body>
+</html>

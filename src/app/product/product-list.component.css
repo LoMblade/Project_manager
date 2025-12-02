@@ -14,12 +14,34 @@ h2 {
   text-align: center;
 }
 
-/* ==================== HEADER SECTION ==================== */
-.d-flex {
-  margin-bottom: 3rem;
+/* ==================== HEADER CONTROLS: Thêm mới + Tìm kiếm (CĂN PHẢI) ==================== */
+.header-controls {
+  display: flex;
+  justify-content: flex-end;        /* Đẩy toàn bộ sang góc phải */
   align-items: center;
+  gap: 16px;                        /* Khoảng cách giữa các phần tử */
+  flex-wrap: wrap;                  /* Tự xuống dòng trên mobile */
+  margin-bottom: 2rem;
+}
+/* Làm dropdown filter to hơn, rộng hơn, đẹp hơn */
+.header-controls .form-select {
+  min-width: 180px;     /* rộng tối thiểu */
+  width: 200px;         /* rộng cố định – bạn có thể tăng lên 220px, 250px tuỳ thích */
+  padding: 12px 16px;   /* padding lớn hơn cho dễ bấm */
+  font-size: 0.95rem;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
 }
 
+.header-controls .form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+  outline: none;
+}
+/* Nút Thêm mới */
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -35,6 +57,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -42,22 +65,69 @@ h2 {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
   color: white;
-  text-decoration: none;
 }
 
-.btn-primary:active {
-  transform: translateY(0);
+/* Ô tìm kiếm + nút X */
+.input-group {
+  width: 300px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-/* ==================== BẢNG CHÍNH ==================== */
-.table {
-  width: 100%;
-  border-collapse: collapse;
+.input-group .form-control {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+}
+
+.input-group .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+  z-index: 3;
+}
+
+.input-group .btn-outline-secondary {
+  border: none;
   background: white;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.input-group .btn-outline-secondary:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.input-group .btn-outline-secondary.opacity-0 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==================== BẢNG ==================== */
+.table-wrapper {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.table-wrapper:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  overflow: visible !important;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 0;
 }
 
 .table thead {
@@ -70,31 +140,47 @@ h2 {
   padding: 20px 16px;
   text-align: left;
   font-size: 0.95rem;
-  border: none;
-  width: 16.67%; /* Chia đều 6 cột */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.table th:first-child {
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .table td {
   padding: 18px 16px;
   vertical-align: middle;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  border-left: 1px solid #e2e8f0;
   font-size: 0.9rem;
-  border: none;
-  width: 16.67%; /* Chia đều 6 cột */
 }
 
-/* Hover dòng – nhẹ nhàng */
+.table td:first-child {
+  border-left: 2px solid #e2e8f0;
+}
+
 .table tbody tr {
   transition: all 0.2s ease;
+  border-left: 3px solid transparent;
 }
 
 .table tbody tr:hover {
   background-color: #f8fafc;
-  transform: scale(1.01);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-left-color: #667eea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* ==================== NÚT SỬA & XÓA ==================== */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-warning,
 .btn-danger {
   border: none;
@@ -116,11 +202,8 @@ h2 {
 }
 
 .btn-warning:hover {
-  background: #3213f8;
+  background: #280bca;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-  color: white;
-  text-decoration: none;
 }
 
 .btn-danger {
@@ -131,22 +214,43 @@ h2 {
 .btn-danger:hover {
   background: #dc2626;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-  color: white;
 }
 
-.action-buttons {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
+/* ======================== TOOLTIP ẢNH ======================== */
+.product-image-tooltip {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  max-width: 420px;
+  max-height: 320px;
+  animation: fadeInScale 0.2s ease-out;
 }
 
-.action-buttons .btn-warning,
-.action-buttons .btn-danger {
-  flex: 1;
-  width: 80px;
-  text-align: center;
+.tooltip-image {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -155,111 +259,32 @@ h2 {
     padding: 1rem;
   }
 
+  .header-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-controls .input-group,
+  .header-controls .btn-primary {
+    width: 100%;
+  }
+
+  .header-controls .btn-primary {
+    justify-content: center;
+  }
+
   .table th,
   .table td {
     padding: 12px 8px;
     font-size: 0.8rem;
   }
 
-  .btn-primary {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+  .product-image-tooltip {
+    max-width: 90vw;
+    max-height: 70vh;
   }
 
-  .action-buttons {
-    flex-direction: column;
-    gap: 6px;
+  .tooltip-image {
+    max-height: 50vh;
   }
-
-  .pagination-container {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .pagination {
-    justify-content: center;
-  }
-}
-
-/* ==================== PAGINATION ==================== */
-.pagination-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 2rem;
-  padding: 1rem 0;
-  border-top: 1px solid #e5e7eb;
-}
-
-.pagination-info {
-  color: #6b7280;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.pagination {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 4px;
-}
-
-.page-item {
-  margin: 0;
-}
-
-.page-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  height: 40px;
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: white;
-  color: #374151;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.page-link:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
-  color: #111827;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.page-item.active .page-link {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-.page-item.active .page-link:hover {
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-  color: white;
-}
-
-.page-item.disabled .page-link {
-  background: #f9fafb;
-  color: #9ca3af;
-  cursor: not-allowed;
-  opacity: 0.6;
-  transform: none;
-  box-shadow: none;
-}
-
-.page-item.disabled .page-link:hover {
-  background: #f9fafb;
-  border-color: #d1d5db;
-  transform: none;
-  box-shadow: none;
 }

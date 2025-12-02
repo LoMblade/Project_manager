@@ -1,105 +1,149 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #eee; }
 
-* {
-  font-family: 'Inter', sans-serif;
+/* ==================== HEADER SHOPEE ==================== */
+.blade-header {
+  background: linear-gradient(90deg, #611acb 0%, #bb2ce6 100%);
+  color: white;
+  font-size: 13px;
 }
 
-body {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-  min-height: 100vh;
-  margin: 0;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
+/* Top bar nhỏ */
+.top-bar {
+  background: rgba(0,0,0,0.05);
+  padding: 8px 0;
+  font-size: 12px;
+}
+
+.top-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-links a, .right-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.left-links a:hover, .right-links a:hover {
+  color: white;
+}
+
+.right-links a i {
+  font-size: 16px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+/* Main bar */
+.main-bar {
+  padding: 20px 0;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo h1 {
+  font-size: 36px;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -1px;
+}
+
+/* Thanh tìm kiếm */
+.search-bar {
+  flex: 1;
+  max-width: 800px;
+  position: relative;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 2px 0 0 2px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-bar button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  background: #67658c;
+  border: none;
+  border-radius: 0 2px 2px 0;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Giỏ hàng */
+.cart {
+  position: relative;
+}
+
+.cart-icon {
+  color: white;
+  font-size: 32px;
+  text-decoration: none;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #fff;
+  color: #ee4d2d;
+  font-size: 11px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gợi ý dưới thanh tìm kiếm */
+.suggestions {
+  background: rgba(255,255,255,0.1);
+  padding: 12px 0;
+  font-size: 13px;
+}
+
+.suggestions a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  opacity: 0.9;
+}
+
+.suggestions a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Giữ nguyên phần nội dung cũ của bạn */
 .page-wrapper {
   max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 30px auto;
+  padding: 0 20px;
 }
 
-/* CARD WELCOME */
-.welcome-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: white;
-  padding: 2rem 3rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.welcome-card .left {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.welcome-card .avatar img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #e0e7ff;
-}
-
-.welcome-card h1 {
-  margin: 0;
-  font-size: 2.2rem;
-  ;
-  color: #1e293b;
-}
-
-.welcome-card p {
-  margin: 8px 0 0;
-  color: #64748b;
-  font-size: 1.1rem;
-}
-
-.divider {
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, #cbd5e1, transparent);
-  height: 80px;
-}
-
-.welcome-card .right {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.pill {
-  display: inline-block;
-  padding: 12px 28px;
-  background: 28px;
-  background: #f1f5f9;
-  color: #475569;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.pill:hover {
-  background: #3b82f6;
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(59,130,246,0.3);
-}
-
-/* Nút active */
-.router-link-active.pill {
-  background: #3b82f6;
-  color: white;
-}
-
-/* CONTENT */
-.router-container {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  min-height: 70vh;
-}
+/* Phần welcome-card và pill giữ nguyên style cũ nếu bạn muốn */
+/* Hoặc mình có thể làm đẹp hơn nữa nếu bạn cần */

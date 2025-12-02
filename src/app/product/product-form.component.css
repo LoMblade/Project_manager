@@ -11,10 +11,17 @@
 .card {
   border-radius: 12px;
   border: 1px solid #e2e8f0;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   margin-bottom: 24px;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
 }
 
 .card-header {
@@ -147,6 +154,33 @@
   border-color: #4b5563;
 }
 
+/* ======================== IMAGE UPLOAD ======================== */
+.image-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.image-preview-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-preview {
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
 /* ======================== RESPONSIVE ======================== */
 @media (max-width: 768px) {
   .container {
@@ -193,6 +227,16 @@
 
   .card-body {
     padding: 20px 16px 20px 24px; /* Giảm thêm padding-left */
+  }
+
+  .image-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-preview {
+    max-width: 150px;
+    max-height: 120px;
   }
 
   .form-row {

@@ -57,6 +57,23 @@
               </div>
             </div>
 
+            <!-- Ảnh sản phẩm -->
+            <div class="form-row">
+              <div class="label-col">Ảnh sản phẩm:</div>
+              <div class="input-col">
+                <div class="image-upload-section">
+                  <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+                  <div class="image-preview-container" *ngIf="selectedImage">
+                    <img [src]="selectedImage" alt="Preview" class="image-preview">
+                  </div>
+                  <div class="image-buttons">
+                    <button type="button" class="btn btn-outline-success" (click)="fileInput.click()">Chọn ảnh</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="clearImage()" *ngIf="selectedImage">Hủy ảnh</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Giá nhập & Giá bán -->
             <div class="form-row double-input">
               <div class="label-col">Giá nhập:</div>

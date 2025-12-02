@@ -5,4 +5,6 @@ export interface Product {
   importPrice: number;
   salePrice: number;
   description?: string;
+  image?: string;
+  category?: string;
 }
