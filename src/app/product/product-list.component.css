@@ -1,108 +1,136 @@
 /* ==================== CONTAINER ==================== */
 .container {
-  max-width: 1200px;
+  max-width: 1350px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
 }
 
-/* ==================== TIÊU ĐỀ ==================== */
+/* ==================== TIÊU ĐỀ – NHỎ HƠN, CĂN TRÁI, ĐẨY LÊN CAO ==================== */
 h2 {
-  color: #374151;
-  font-size: 50px;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  text-align: center;
+  /* Gradient tím → hồng giống hệt ảnh bạn gửi */
+  background: linear-gradient(90deg, #8b5cf6 0%, #d946ef 60%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  font-size: 30px;
+  font-weight: 900;
+  font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+
+  /* Căn trái */
+  text-align: left !important;
+
+  /* Khoảng cách chữ âm nhẹ */
+  letter-spacing: -1.2px;
+
+  /* Không xuống dòng, không bị cắt */
+  white-space: nowrap;
+  overflow: visible !important;
+  text-overflow: clip;
+  display: block;
+
+  margin-top: -1cm !important;     
+  margin-bottom: 1.5rem;            
 }
 
-/* ==================== HEADER CONTROLS: Thêm mới + Tìm kiếm (CĂN PHẢI) ==================== */
-.header-controls {
+/* Đảm bảo container cha không cắt chữ */
+.page-header,
+.container,
+.container > div {
+  overflow: visible !important;
+}
+
+/* ==================== HEADER: Tiêu đề + Filter + Controls ==================== */
+.page-header {
   display: flex;
-  justify-content: flex-end;        /* Đẩy toàn bộ sang góc phải */
-  align-items: center;
-  gap: 16px;                        /* Khoảng cách giữa các phần tử */
-  flex-wrap: wrap;                  /* Tự xuống dòng trên mobile */
-  margin-bottom: 2rem;
-}
-/* Làm dropdown filter to hơn, rộng hơn, đẹp hơn */
-.header-controls .form-select {
-  min-width: 180px;     /* rộng tối thiểu */
-  width: 200px;         /* rộng cố định – bạn có thể tăng lên 220px, 250px tuỳ thích */
-  padding: 12px 16px;   /* padding lớn hơn cho dễ bấm */
-  font-size: 0.95rem;
-  border-radius: 12px;
-  border: 2px solid #e2e8f0;
-  background-color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-  transition: all 0.2s ease;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5cm;  /* Khoảng cách 0.5cm với bảng */
+  gap: 20px;
 }
 
-.header-controls .form-select:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
-  outline: none;
+/* Bên trái: Tiêu đề và Filter thẳng hàng dọc */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 }
-/* Nút Thêm mới */
-.btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 14px 32px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-  text-decoration: none;
-  display: inline-flex;
+
+.left-column h2 {
+  margin-bottom: 0;
+}
+
+.filter-section {
+  width: 100%;
+}
+
+.filter-select {
+  min-width: 180px;
+  width: 200px;
+}
+
+/* Bên phải: Search + Excel + Thêm mới cùng hàng ngang */
+.right-controls {
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==================== CÁC CONTROL RIÊNG – ĐẸP & GỌN HƠN ==================== */
+
+/* Dropdown nhóm */
+.header-controls .form-select {
+  min-width: 180px;
+  width: 200px;
+  padding: 11px 16px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* Ô tìm kiếm */
+.input-group {
+  width: 340px;                  /* Rộng hơn một chút cho dễ gõ */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Nút Xuất Excel */
+.excel-dropdown .dropdown-toggle {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: white;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(22,163,74,0.3);
   white-space: nowrap;
 }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+.excel-dropdown .dropdown-toggle:hover {
+  background: linear-gradient(135deg, #15803d, #166534);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* Nút Thêm mới */
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
   color: white;
-}
-
-/* Ô tìm kiếm + nút X */
-.input-group {
-  width: 300px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.input-group .form-control {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
+  padding: 11px 28px;
+  border-radius: 10px;
+  font-weight: 600;
   font-size: 0.95rem;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.3);
 }
 
-.input-group .form-control:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
-  z-index: 3;
-}
-
-.input-group .btn-outline-secondary {
-  border: none;
-  background: white;
-  color: #6b7280;
-  transition: all 0.2s ease;
-}
-
-.input-group .btn-outline-secondary:hover {
-  background: #f3f4f6;
-  color: #374151;
-}
-
-.input-group .btn-outline-secondary.opacity-0 {
-  opacity: 0;
-  pointer-events: none;
+.btn-primary:hover {
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  transform: translateY(-2px);
 }
 
 /* ==================== BẢNG ==================== */
@@ -138,15 +166,29 @@ h2 {
 .table th {
   font-weight: 600;
   padding: 20px 16px;
-  text-align: left;
+  text-align: center;
   font-size: 0.95rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-bottom: 2px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .table th:first-child {
   border-left: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.table th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
 }
 
 .table td {
@@ -222,15 +264,16 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99999;
+  z-index: 100000 !important;
   background: white;
-  border: 1px solid #e5e7eb;
+  border: 2px solid #667eea;
   border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   max-width: 420px;
   max-height: 320px;
   animation: fadeInScale 0.2s ease-out;
+  pointer-events: none;
 }
 
 .tooltip-image {
@@ -259,17 +302,30 @@ h2 {
     padding: 1rem;
   }
 
-  .header-controls {
+  /* Mobile: Chuyển thành layout dọc */
+  .page-header {
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 16px;
   }
 
-  .header-controls .input-group,
-  .header-controls .btn-primary {
+  .left-column {
     width: 100%;
   }
 
-  .header-controls .btn-primary {
+  .right-controls {
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .right-controls .input-group,
+  .right-controls .btn-primary {
+    width: 100%;
+  }
+
+  .right-controls .btn-primary {
     justify-content: center;
   }
 
@@ -286,5 +342,245 @@ h2 {
 
   .tooltip-image {
     max-height: 50vh;
+  }
+}
+
+/* ==================== PAGINATION CONTAINER ==================== */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.pagination-nav {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+/* ==================== PAGINATION STYLING ==================== */
+.pagination {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.25rem;
+}
+
+.page-item {
+  margin: 0;
+}
+
+.page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0.5rem 0.75rem;
+  margin: 0;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: white;
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.page-link:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  color: #111827;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.page-item.active .page-link {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.page-item.disabled .page-link {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.page-link i {
+  font-size: 1.1rem;
+}
+
+/* ==================== RESPONSIVE PAGINATION ==================== */
+@media (max-width: 768px) {
+  .pagination-container {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .pagination-info {
+    order: 2;
+    margin-top: 0.5rem;
+  }
+
+  .pagination-nav {
+    order: 1;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.125rem;
+  }
+
+  .page-link {
+    min-width: 36px;
+    height: 36px;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .page-link i {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-container {
+    padding: 1rem 0;
+  }
+
+  .pagination {
+    gap: 0.0625rem;
+  }
+
+  .page-link {
+    min-width: 32px;
+    height: 32px;
+    padding: 0.25rem 0.375rem;
+    font-size: 0.75rem;
+  }
+
+  .page-link i {
+    font-size: 0.9rem;
+  }
+}
+
+/* Excel Dropdown Styles */
+.excel-dropdown {
+  position: relative;
+}
+
+.excel-dropdown .dropdown-menu {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 8px 0;
+  min-width: 220px;
+}
+
+.excel-dropdown .dropdown-item {
+  padding: 12px 16px;
+  color: #495057;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.excel-dropdown .dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.excel-dropdown .dropdown-item i {
+  margin-right: 8px;
+  width: 16px;
+  text-align: center;
+}
+
+.excel-dropdown .dropdown-item:first-child i {
+  color: #28a745;
+}
+
+.excel-dropdown .dropdown-item:nth-child(2) i {
+  color: #17a2b8;
+}
+
+.excel-dropdown .dropdown-item:last-child i {
+  color: #6c757d;
+}
+
+/* Dropdown toggle button */
+.excel-dropdown .dropdown-toggle {
+  border: none;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+.excel-dropdown .dropdown-toggle:hover {
+  background: linear-gradient(135deg, #218838 0%, #1aa085 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.excel-dropdown .dropdown-toggle:focus {
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+}
+
+/* Animation for dropdown */
+.excel-dropdown .dropdown-menu {
+  animation: fadeInDown 0.2s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .excel-dropdown .dropdown-menu {
+    min-width: 200px;
+    right: 0;
+    left: auto;
+  }
+
+  .excel-dropdown .dropdown-item {
+    padding: 10px 12px;
+    font-size: 14px;
   }
 }

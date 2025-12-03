@@ -1,36 +1,31 @@
 import { Component, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
+  imports: [RouterOutlet, CommonModule],
+  templateUrl: './app.component.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('product-demo');
 
-  // Thêm Router để điều hướng
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public authService: AuthService
+  ) {}
 
-  // Hàm logout – ĐÃ CÓ → HẾT LỖI NGAY!
+  // Hàm logout
   logout() {
-    // Xóa hết dữ liệu đăng nhập
-    localStorage.clear();
-    sessionStorage.clear();
-
-    // Chuyển về trang login (hoặc trang chủ)
-    this.router.navigate(['/login']);
-    // Nếu bạn chưa có trang login thì dùng: this.router.navigate(['/']);
-
-    // Tùy chọn: thông báo
-    console.log('Đã đăng xuất thành công!');
-    // Nếu dùng toast: this.toastr.success('Đăng xuất thành công');
+    this.authService.logout();
   }
 
-  // Bonus: Kiểm tra đã login chưa (dùng để ẩn/hiện Login/Logout)
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token') || !!localStorage.getItem('currentUser');
+  // Kiểm tra xem có đang ở trang auth (login/register) không
+  isAuthPage(): boolean {
+    const currentUrl = this.router.url;
+    return currentUrl.includes('/login') || currentUrl.includes('/register');
   }
 }

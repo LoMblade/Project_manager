@@ -4,6 +4,7 @@ import { Product } from '../models/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-form',
@@ -33,8 +34,9 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    console.log('=== ProductFormComponent ngOnInit ===');
     console.log('Route params:', this.route.snapshot.paramMap);
-    console.log('ID from route:', id);
+    console.log('ID from route:', id, 'Type:', typeof id);
 
     if (id) {
       this.isEdit = true;
@@ -45,13 +47,14 @@ export class ProductFormComponent implements OnInit {
       if (isNaN(numericId)) {
         console.error('Invalid ID format:', id);
         alert('ID sản phẩm không hợp lệ!');
-        this.router.navigate(['/']);
+        this.router.navigate(['/product/list']);
         return;
       }
 
       this.productService.getById(numericId).subscribe({
         next: (p) => {
           console.log('Successfully loaded product:', p);
+          console.log('Product ID from API:', p?.id, 'Type:', typeof p?.id);
           if (p) {
             this.product = p;
             // Load image preview if exists
@@ -59,15 +62,15 @@ export class ProductFormComponent implements OnInit {
               this.selectedImage = p.image;
             }
           } else {
-            console.error('Product not found (null response)');
+            console.error('Product not found (null response) for ID:', numericId);
             alert('Không tìm thấy sản phẩm!');
-            this.router.navigate(['/']);
+            this.router.navigate(['/product/list']);
           }
         },
         error: (err) => {
-          console.error('Error loading product:', err);
+          console.error('Error loading product with ID:', numericId, 'Error:', err);
           alert('Không tìm thấy sản phẩm!');
-          this.router.navigate(['/']);
+          this.router.navigate(['/product/list']);
         }
       });
     }
@@ -77,25 +80,38 @@ export class ProductFormComponent implements OnInit {
     console.log('Submitting product:', this.product);
     console.log('Is edit mode:', this.isEdit);
 
-    const action = this.isEdit && this.product.id
-      ? this.productService.update(this.product.id, this.product)
-      : this.productService.create(this.product);
+    // Determine action based on edit mode and product ID
+    let action: Observable<Product>;
+    if (this.isEdit && this.product.id) {
+      console.log('Updating product with ID:', this.product.id);
+      action = this.productService.update(this.product.id, this.product);
+    } else {
+      console.log('Creating new product');
+      action = this.productService.create(this.product);
+    }
 
     action.subscribe({
       next: (result) => {
         console.log('Submit result:', result);
-        alert(this.isEdit ? 'Cập nhật thành công!' : 'Thêm hàng hóa thành công!');
-        this.router.navigate(['/']);
+        console.log('Product saved successfully:', result);
+
+        // Show success message
+        const message = this.isEdit ? 'Cập nhật thành công!' : 'Thêm hàng hóa thành công!';
+        alert(message);
+
+        // Navigate back to product list
+        console.log('Navigating to product list...');
+        this.router.navigate(['/product/list']);
       },
       error: (err) => {
         console.error('Submit error:', err);
-        alert('Có lỗi xảy ra!');
+        alert('Có lỗi xảy ra! Vui lòng thử lại.');
       }
     });
   }
 
   onCancel() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/product/list']);
   }
 
   // Image handling methods

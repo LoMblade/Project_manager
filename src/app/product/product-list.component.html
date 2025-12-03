@@ -1,23 +1,25 @@
 <div class="container mt-5">
 
   <!-- ====================== HEADER: Tiêu đề + Controls ====================== -->
-  <div class="d-flex align-items-center justify-content-between mb-5">
-    <!-- Tiêu đề bên trái -->
-    <h2 class="mb-0">Danh sách sản phẩm</h2>
+  <div class="page-header">
+    <!-- Bên trái: Tiêu đề + Filter thẳng hàng dọc -->
+    <div class="left-column">
+      <h2 class="mb-0">Danh sách sản phẩm</h2>
+      <!-- Filter nằm thẳng hàng dọc với tiêu đề -->
+      <div class="filter-section">
+        <select class="form-select filter-select"
+                [(ngModel)]="selectedCategory"
+                (change)="onCategoryChange()">
+          <option value="">Tất cả nhóm</option>
+          <option value="Phụ kiện">Phụ kiện</option>
+          <option value="Thực phẩm">Thực phẩm</option>
+          <option value="Đồ uống">Đồ uống</option>
+        </select>
+      </div>
+    </div>
 
-    <!-- Các control bên phải: Dropdown → Tìm kiếm → Thêm mới -->
-    <div class="header-controls">
-
-      <!-- 1. Filter theo nhóm -->
-      <select class="form-select" 
-              [(ngModel)]="selectedCategory" 
-              (change)="onCategoryChange()">
-        <option value="">Tất cả nhóm</option>
-        <option value="Phụ kiện">Phụ kiện</option>
-        <option value="Thực phẩm">Thực phẩm</option>
-        <option value="Đồ uống">Đồ uống</option>
-      </select>
-
+    <!-- Bên phải: Search + Excel + Thêm mới cùng hàng ngang -->
+    <div class="right-controls">
       <!-- 2. Thanh tìm kiếm có nút X -->
       <div class="input-group">
         <input type="text"
@@ -25,8 +27,8 @@
                placeholder="Tìm kiếm sản phẩm..."
                [(ngModel)]="searchTerm"
                (input)="onSearchChange()">
-        <button class="btn btn-outline-secondary" 
-                type="button" 
+        <button class="btn btn-outline-secondary"
+                type="button"
                 (click)="clearSearch()"
                 [class.opacity-0]="!searchTerm"
                 title="Xóa tìm kiếm">
@@ -34,7 +36,25 @@
         </button>
       </div>
 
-      <!-- 3. Nút Thêm mới -->
+      <!-- 3. Nút Xuất Excel Dropdown -->
+      <div class="dropdown excel-dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-file-earmark-excel"></i> Xuất Excel
+        </button>
+        <ul class="dropdown-menu">
+          <li><button class="dropdown-item" (click)="exportCurrentPageToExcel()">
+            <i class="bi bi-file-earmark-spreadsheet"></i> Xuất trang hiện tại
+          </button></li>
+          <li><button class="dropdown-item" (click)="exportFilteredToExcel()">
+            <i class="bi bi-funnel"></i> Xuất kết quả lọc
+          </button></li>
+          <li><button class="dropdown-item" (click)="exportAllToExcel()">
+            <i class="bi bi-file-earmark-excel"></i> Xuất tất cả
+          </button></li>
+        </ul>
+      </div>
+
+      <!-- 4. Nút Thêm mới -->
       <a routerLink="/product/add" class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Thêm mới
       </a>
@@ -76,8 +96,8 @@
           <td class="text-truncate" style="max-width: 200px;">{{ p.description }}</td>
           <td>
             <div class="action-buttons">
-              <a routerLink="/product/edit/{{ p.id }}" 
-                 class="btn btn-warning btn-sm" 
+              <a [routerLink]="['/product/edit', p.id]"
+                 class="btn btn-warning btn-sm"
                  (click)="onEditClick(p)">Sửa</a>
               <button (click)="delete(p.id!)" 
                       class="btn btn-danger btn-sm">Xóa</button>
@@ -96,25 +116,46 @@
   </div>
 
   <!-- ====================== PHÂN TRANG ====================== -->
-  <div class="d-flex justify-content-between align-items-center mt-4" *ngIf="totalElements > 0">
+  <div class="pagination-container" *ngIf="totalElements > 0">
     <div class="pagination-info text-muted">
       Hiển thị {{ (currentPage * pageSize) + 1 }} - {{ getEndIndex() }} của {{ totalElements }} sản phẩm
     </div>
 
-    <nav aria-label="Product pagination">
+    <nav aria-label="Product pagination" class="pagination-nav">
       <ul class="pagination mb-0">
+        <!-- First Page -->
         <li class="page-item" [class.disabled]="isFirst">
-          <button class="page-link" (click)="previousPage()" [disabled]="isFirst">Trước</button>
+          <button class="page-link" (click)="goToFirstPage()" [disabled]="isFirst" title="Trang đầu">
+            <i class="bx bx-chevrons-left"></i>
+          </button>
         </li>
 
-        <li class="page-item" 
-            *ngFor="let page of getPagesArray()" 
+        <!-- Previous Page -->
+        <li class="page-item" [class.disabled]="isFirst">
+          <button class="page-link" (click)="previousPage()" [disabled]="isFirst" title="Trang trước">
+            <i class="bx bx-chevron-left"></i>
+          </button>
+        </li>
+
+        <!-- Page Numbers -->
+        <li class="page-item"
+            *ngFor="let page of getPagesArray()"
             [class.active]="page === currentPage">
           <button class="page-link" (click)="goToPage(page)">{{ page + 1 }}</button>
         </li>
 
+        <!-- Next Page -->
         <li class="page-item" [class.disabled]="isLast">
-          <button class="page-link" (click)="nextPage()" [disabled]="isLast">Sau</button>
+          <button class="page-link" (click)="nextPage()" [disabled]="isLast" title="Trang sau">
+            <i class="bx bx-chevron-right"></i>
+          </button>
+        </li>
+
+        <!-- Last Page -->
+        <li class="page-item" [class.disabled]="isLast">
+          <button class="page-link" (click)="goToLastPage()" [disabled]="isLast" title="Trang cuối">
+            <i class="bx bx-chevrons-right"></i>
+          </button>
         </li>
       </ul>
     </nav>

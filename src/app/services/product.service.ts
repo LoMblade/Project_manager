@@ -42,7 +42,12 @@ export class ProductService {
       );
   }
 
-  getById(id: number): Observable<Product> { return this.http.get<Product>(`${this.apiUrl}/${id}`); }
+  getById(id: number): Observable<Product> {
+    console.log('ProductService.getById called with id:', id, 'type:', typeof id);
+    const url = `${this.apiUrl}/${id}`;
+    console.log('Requesting URL:', url);
+    return this.http.get<Product>(url);
+  }
   create(p: Product): Observable<Product> { return this.http.post<Product>(this.apiUrl, p); }
   update(id: number, p: Product): Observable<Product> { return this.http.put<Product>(`${this.apiUrl}/${id}`, p); }
   delete(id: number): Observable<void> { return this.http.delete<void>(`${this.apiUrl}/${id}`); }

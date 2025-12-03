@@ -1,20 +1,23 @@
 import { Routes } from '@angular/router';
 import { ProductListComponent } from './product/product-list.component';
 import { ProductFormComponent } from './product/product-form.component';
+import { LoginComponent } from './auth/login.component';
+import { RegisterComponent } from './auth/register.component';
+import { AuthGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
-  // Trang chủ → tự động chuyển về danh sách sản phẩm
-  { path: '', redirectTo: 'product/list', pathMatch: 'full' },
+  // Trang chủ → chuyển về login nếu chưa đăng nhập
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  // Danh sách sản phẩm
-  { path: 'product/list', component: ProductListComponent },
+  // Authentication routes
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
-  // Form thêm mới
-  { path: 'product/add', component: ProductFormComponent },
+  // Protected product routes - cần đăng nhập
+  { path: 'product/list', component: ProductListComponent, canActivate: [AuthGuard] },
+  { path: 'product/add', component: ProductFormComponent, canActivate: [AuthGuard] },
+  { path: 'product/edit/:id', component: ProductFormComponent, canActivate: [AuthGuard] },
 
-  // Form sửa
-  { path: 'product/edit/:id', component: ProductFormComponent },
-
-  // Bắt hết các đường dẫn sai → về danh sách
-  { path: '**', redirectTo: 'product/list' }
+  // Bắt hết các đường dẫn sai → về login
+  { path: '**', redirectTo: 'login' }
 ];

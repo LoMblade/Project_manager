@@ -1,9 +1,9 @@
 <div class="container">
   <h2 style="color: #1f2937; font-weight: 700; font-size: 2rem; margin-bottom: 2.5rem; text-align: center; letter-spacing: -0.025em;">Chi tiết hàng hóa</h2>
 
-  <div class="row">
-    <!-- Cột trái: Form -->
-    <div class="col-md-7">
+  <div class="row justify-content-center">
+    <!-- Form chi tiết hàng hóa -->
+    <div class="col-md-10">
       <div class="card">
         <div class="card-header">
           Thông tin chi tiết hàng hóa
@@ -19,13 +19,6 @@
                   <option>Thực phẩm</option>
                   <option>Đồ uống</option>
                 </select>
-              </div>
-            </div>
-
-            <!-- Button Thêm nhanh -->
-            <div class="form-row">
-              <div class="input-col">
-                <button type="button" class="btn btn-info">Thêm nhanh</button>
               </div>
             </div>
 
@@ -108,29 +101,10 @@
 
             <!-- Form Actions -->
             <div class="form-actions">
-              <button type="button" class="btn btn-secondary" (click)="onCancel()">Trợ giúp</button>
               <button type="submit" class="btn btn-success">Chấp nhận </button>
               <button type="button" class="btn btn-danger" (click)="onCancel()">Kết thúc</button>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cột phải: Ảnh -->
-    <div class="col-md-5">
-      <div class="card">
-        <div class="card-header">
-          Ảnh sản phẩm
-        </div>
-        <div class="card-body text-center">
-          <div class="image-preview">
-            <img src="https://i.imgur.com/wh860.jpg" alt="Sản phẩm" style="max-height: 320px;">
-          </div>
-          <div class="image-buttons">
-            <button class="btn btn-outline-success">Chọn ảnh</button>
-            <button class="btn btn-outline-danger">Hủy ảnh</button>
-          </div>
         </div>
       </div>
     </div>

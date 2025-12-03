@@ -91,33 +91,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
   cursor: pointer;
 }
 
-/* Giỏ hàng */
-.cart {
-  position: relative;
-}
-
-.cart-icon {
-  color: white;
-  font-size: 32px;
-  text-decoration: none;
-  position: relative;
-}
-
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #fff;
-  color: #ee4d2d;
-  font-size: 11px;
-  font-weight: bold;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 /* Gợi ý dưới thanh tìm kiếm */
 .suggestions {
@@ -146,4 +119,69 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 }
 
 /* Phần welcome-card và pill giữ nguyên style cũ nếu bạn muốn */
+/* Header đơn giản cho trang login/register */
+.auth-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-logo h1 {
+  color: white;
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.auth-logo p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Ẩn page-content padding khi ở trang auth */
+.page-content {
+  min-height: calc(100vh - 80px);
+}
+
+/* Responsive cho auth header */
+@media (max-width: 768px) {
+  .auth-logo h1 {
+    font-size: 36px;
+  }
+
+  .auth-logo p {
+    font-size: 16px;
+  }
+}
+
+/* User info và logout button */
+.user-info {
+  color: #fff;
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #ff3742;
+}
+
+.logout-btn i {
+  margin-right: 5px;
+}
+
 /* Hoặc mình có thể làm đẹp hơn nữa nếu bạn cần */
