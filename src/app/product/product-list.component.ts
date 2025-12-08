@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { ExcelExportService } from '../services/excel-export.service';
+import { NotificationService } from '../services/notification.service';
 import { Product } from '../models/product.model';
 import { PageRequest } from '../models/pagination.model';
 import { CommonModule } from '@angular/common';
@@ -27,45 +28,85 @@ export class ProductListComponent implements OnInit {
   // Filter & Search
   selectedCategory: string = '';
   searchTerm: string = '';
-  allProducts: Product[] = []; // Store original data
+  allProducts: Product[] = []; // Tất cả sản phẩm từ API
+  filteredProducts: Product[] = []; // Sản phẩm sau khi lọc
 
   constructor(
     private productService: ProductService,
-    private excelExportService: ExcelExportService
+    private excelExportService: ExcelExportService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
-    this.loadProducts();
+    // Restore pagination state if available
+    const savedPage = sessionStorage.getItem('productListPage');
+    if (savedPage) {
+      this.currentPage = parseInt(savedPage, 10);
+      sessionStorage.removeItem('productListPage');
+    }
+    
+    this.loadAllProducts();
   }
 
-  loadProducts(page: number = 0) {
-    const pageRequest: PageRequest = {
-      page: page,
-      size: this.pageSize
-    };
-
-    this.productService.getAllPaginated(pageRequest).subscribe(data => {
-      console.log('Loaded products from API:', data.content);
-      console.log('First few product IDs:', data.content.slice(0, 3).map(p => ({ id: p.id, name: p.name })));
-      this.allProducts = data.content; // Store original data
-      this.applyFilters(); // Apply current filters
-      this.totalElements = data.totalElements;
-      this.totalPages = data.totalPages;
-      this.currentPage = data.number;
-      this.isFirst = data.first;
-      this.isLast = data.last;
+  // Load tất cả sản phẩm từ API
+  loadAllProducts() {
+    this.productService.getAll().subscribe({
+      next: (data) => {
+        console.log('✅ Loaded all products from API:', data.length);
+        this.allProducts = data;
+        
+        // Handle updated or newly created product
+        const updatedProduct = sessionStorage.getItem('updatedProduct');
+        if (updatedProduct) {
+          const product = JSON.parse(updatedProduct);
+          
+          // Check if it's an update (product already exists) or new creation
+          const existingIndex = this.allProducts.findIndex(p => p.id === product.id);
+          if (existingIndex > -1) {
+            // Update existing product
+            this.allProducts[existingIndex] = product;
+            console.log('✅ Product updated:', product);
+          } else {
+            // Add new product at the beginning
+            this.allProducts.unshift(product);
+            console.log('✅ Product added:', product);
+          }
+          
+          sessionStorage.removeItem('updatedProduct');
+        }
+        
+        this.applyFilters();
+      },
+      error: (err) => {
+        console.error('Error loading products:', err);
+        this.notificationService.error('Không thể tải danh sách sản phẩm!');
+      }
     });
   }
 
+  // Save current pagination state before navigating
+  savePaginationState() {
+    sessionStorage.setItem('productListPage', this.currentPage.toString());
+  }
+
   delete(id: number) {
-    if (confirm('Bạn có chắc muốn xóa hàng hóa này?')) {
+    if (confirm('Đã chắc chưa ???')) {
       this.productService.delete(id).subscribe({
         next: () => {
-          alert('Xóa thành công!');
-          // Reload current page after deletion
-          this.loadProducts(this.currentPage);
+          this.notificationService.success('Xóa sản phẩm thành công!');
+          // Remove the product from local array without reloading
+          this.allProducts = this.allProducts.filter(p => p.id !== id);
+          
+          // Recalculate pagination after deletion
+          this.applyFilters();
+          
+          // If current page is now empty (last page had 1 item), go to previous page
+          if (this.products.length === 0 && this.currentPage > 0) {
+            this.currentPage--;
+            this.applyFilters();
+          }
         },
-        error: () => alert('Xóa thất bại!')
+        error: () => this.notificationService.error('Xóa sản phẩm thất bại!')
       });
     }
   }
@@ -73,31 +114,36 @@ export class ProductListComponent implements OnInit {
   // Pagination methods
   nextPage() {
     if (!this.isLast) {
-      this.loadProducts(this.currentPage + 1);
+      this.currentPage++;
+      this.applyFilters();
     }
   }
 
   previousPage() {
     if (!this.isFirst) {
-      this.loadProducts(this.currentPage - 1);
+      this.currentPage--;
+      this.applyFilters();
     }
   }
 
   goToPage(page: number) {
     if (page >= 0 && page < this.totalPages) {
-      this.loadProducts(page);
+      this.currentPage = page;
+      this.applyFilters();
     }
   }
 
   goToFirstPage() {
     if (!this.isFirst) {
-      this.loadProducts(0);
+      this.currentPage = 0;
+      this.applyFilters();
     }
   }
 
   goToLastPage() {
     if (!this.isLast) {
-      this.loadProducts(this.totalPages - 1);
+      this.currentPage = this.totalPages - 1;
+      this.applyFilters();
     }
   }
 
@@ -118,21 +164,20 @@ export class ProductListComponent implements OnInit {
     return pages;
   }
 
-  getEndIndex(): number {
-    return Math.min((this.currentPage + 1) * this.pageSize, this.totalElements);
-  }
-
   // Filter & Search methods
   onCategoryChange() {
+    this.currentPage = 0; // Reset to first page
     this.applyFilters();
   }
 
   onSearchChange() {
+    this.currentPage = 0; // Reset to first page
     this.applyFilters();
   }
 
   clearSearch() {
     this.searchTerm = '';
+    this.currentPage = 0;
     this.applyFilters();
   }
 
@@ -154,14 +199,20 @@ export class ProductListComponent implements OnInit {
       );
     }
 
-    this.products = filtered;
-  }
+    this.filteredProducts = filtered;
+    this.totalElements = filtered.length;
+    this.totalPages = Math.ceil(filtered.length / this.pageSize);
+    
+    // Calculate pagination
+    this.isFirst = this.currentPage === 0;
+    this.isLast = this.currentPage >= this.totalPages - 1;
 
-  // Edit method
-  onEditClick(product: Product) {
-    console.log('Edit clicked for product:', product);
-    console.log('Product ID:', product.id, 'Type:', typeof product.id);
-    console.log('All products in list:', this.products.map(p => ({ id: p.id, name: p.name })));
+    // Get products for current page
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = Math.min(startIndex + this.pageSize, filtered.length);
+    this.products = filtered.slice(startIndex, endIndex);
+
+    console.log(`Page ${this.currentPage + 1}/${this.totalPages}: Showing ${this.products.length} products`);
   }
 
   // Image hover methods
@@ -179,7 +230,7 @@ export class ProductListComponent implements OnInit {
   exportAllToExcel() {
     console.log('Export all products called');
     if (this.allProducts.length === 0) {
-      alert('Không có dữ liệu để xuất!');
+      this.notificationService.warning('Không có dữ liệu để xuất!');
       return;
     }
 
@@ -190,39 +241,39 @@ export class ProductListComponent implements OnInit {
         'tat-ca-san-pham'
       );
       console.log('✅ Excel export completed successfully');
-      alert('Đã xuất file Excel thành công! File sẽ được tải xuống tự động.');
+      this.notificationService.success('Xuất file Excel thành công! File sẽ được tải xuống tự động.');
     } catch (error: any) {
       console.error('Export all Excel error:', error);
-      alert(error.message || 'Không thể xuất file Excel. Vui lòng thử lại.');
+      this.notificationService.error(error.message || 'Không thể xuất file Excel. Vui lòng thử lại.');
     }
   }
 
   exportFilteredToExcel() {
     console.log('Export filtered products called');
-    if (this.products.length === 0) {
-      alert('Không có dữ liệu để xuất!');
+    if (this.filteredProducts.length === 0) {
+      this.notificationService.warning('Không có dữ liệu để xuất!');
       return;
     }
 
     try {
-      console.log('Exporting', this.products.length, 'filtered products');
+      console.log('Exporting', this.filteredProducts.length, 'filtered products');
       console.log('Filters:', { category: this.selectedCategory, searchTerm: this.searchTerm });
       this.excelExportService.exportProductsToExcel(
-        this.products,
+        this.filteredProducts,
         'san-pham-da-loc'
       );
       console.log('✅ Excel export completed successfully');
-      alert('Đã xuất file Excel thành công! File sẽ được tải xuống tự động.');
+      this.notificationService.success('Xuất file Excel thành công! File sẽ được tải xuống tự động.');
     } catch (error: any) {
       console.error('Export filtered Excel error:', error);
-      alert(error.message || 'Không thể xuất file Excel. Vui lòng thử lại.');
+      this.notificationService.error(error.message || 'Không thể xuất file Excel. Vui lòng thử lại.');
     }
   }
 
   exportCurrentPageToExcel() {
     console.log('Export current page called');
     if (this.products.length === 0) {
-      alert('Không có dữ liệu để xuất!');
+      this.notificationService.warning('Không có dữ liệu để xuất!');
       return;
     }
 
@@ -234,10 +285,10 @@ export class ProductListComponent implements OnInit {
         `san-pham-trang-${this.currentPage + 1}`
       );
       console.log('✅ Excel export completed successfully');
-      alert('Đã xuất file Excel thành công! File sẽ được tải xuống tự động.');
+      this.notificationService.success('Xuất file Excel thành công! File sẽ được tải xuống tự động.');
     } catch (error: any) {
       console.error('Export current page Excel error:', error);
-      alert(error.message || 'Không thể xuất file Excel. Vui lòng thử lại.');
+      this.notificationService.error(error.message || 'Không thể xuất file Excel. Vui lòng thử lại.');
     }
   }
 }

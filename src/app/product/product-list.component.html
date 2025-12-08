@@ -55,7 +55,9 @@
       </div>
 
       <!-- 4. Nút Thêm mới -->
-      <a routerLink="/product/add" class="btn btn-primary">
+      <a routerLink="/product/add" 
+         (click)="savePaginationState()"
+         class="btn btn-primary">
         <i class="bi bi-plus-lg"></i> Thêm mới
       </a>
     </div>
@@ -97,8 +99,8 @@
           <td>
             <div class="action-buttons">
               <a [routerLink]="['/product/edit', p.id]"
-                 class="btn btn-warning btn-sm"
-                 (click)="onEditClick(p)">Sửa</a>
+                 (click)="savePaginationState()"
+                 class="btn btn-warning btn-sm">Sửa</a>
               <button (click)="delete(p.id!)" 
                       class="btn btn-danger btn-sm">Xóa</button>
             </div>
@@ -118,7 +120,7 @@
   <!-- ====================== PHÂN TRANG ====================== -->
   <div class="pagination-container" *ngIf="totalElements > 0">
     <div class="pagination-info text-muted">
-      Hiển thị {{ (currentPage * pageSize) + 1 }} - {{ getEndIndex() }} của {{ totalElements }} sản phẩm
+      Hiển thị {{ (currentPage * pageSize) + 1 }} - {{ (currentPage * pageSize) + products.length }} của {{ totalElements }} sản phẩm
     </div>
 
     <nav aria-label="Product pagination" class="pagination-nav">

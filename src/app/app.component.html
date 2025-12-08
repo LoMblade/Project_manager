@@ -63,13 +63,16 @@
   </div>
 </header>
 
-<!-- Header đơn giản cho trang login/register -->
-<div class="auth-header" *ngIf="!authService.isAuthenticated() && isAuthPage()">
+<!-- Header đơn giản cho trang login/register - HIDDEN -->
+<!-- <div class="auth-header" *ngIf="!authService.isAuthenticated() && isAuthPage()">
   <div class="auth-logo">
     <h1>Blade</h1>
     <p>Product Management System</p>
   </div>
-</div>
+</div> -->
+
+<!-- Notification Component -->
+<app-notification></app-notification>
 
 <!-- Nội dung chính của ứng dụng Angular -->
 <div class="page-content">

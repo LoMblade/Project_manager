@@ -195,27 +195,409 @@
       "code": "DU006",
       "name": "Cà phê sữa đá Highlands",
       "category": "Đồ uống",
-      "importPrice": 28000,
+      "importPrice": 10000,
       "salePrice": 40000,
       "description": "Cà phê sữa đá pha theo công thức đặc trưng của Highlands Coffee",
       "image": "https://example.com/highlands-coffee.jpg"
     },
     {
-      "id": "6940",
-      "code": "",
-      "name": "",
-      "importPrice": 0,
-      "salePrice": 0,
-      "description": "",
-      "image": ""
-    },
-    {
-      "id": "0366",
+      "id": "21",
       "code": "GLSXPQ",
-      "name": "Thập cẩm chi tồn ",
+      "name": "Thập cẩm chi tồn",
+      "category": "Thực phẩm",
       "importPrice": 50,
       "salePrice": 5000000,
       "description": "Ăn vào là hồn bay phách loạn",
+      "image": ""
+    },
+    {
+      "id": "22",
+      "code": "SP3356",
+      "name": "Trà sữa cu te phô mai que",
+      "category": "Đồ uống",
+      "importPrice": 15000,
+      "salePrice": 50000,
+      "description": "thách dám uống",
+      "image": ""
+    },
+    {
+      "id": "23",
+      "code": "PK008",
+      "name": "Tai nghe không dây JBL",
+      "category": "Phụ kiện",
+      "importPrice": 800000,
+      "salePrice": 1200000,
+      "description": "Tai nghe bluetooth chất lượng cao với pin 20h",
+      "image": ""
+    },
+    {
+      "id": "24",
+      "code": "PK009",
+      "name": "Sạc nhanh 65W PD",
+      "category": "Phụ kiện",
+      "importPrice": 350000,
+      "salePrice": 500000,
+      "description": "Sạc nhanh Type-C với công nghệ Power Delivery",
+      "image": ""
+    },
+    {
+      "id": "25",
+      "code": "PK010",
+      "name": "Cáp USB-C dài 2m",
+      "category": "Phụ kiện",
+      "importPrice": 80000,
+      "salePrice": 150000,
+      "description": "Cáp sạc USB-C chất lượng cao chống rối",
+      "image": ""
+    },
+    {
+      "id": "26",
+      "code": "PK011",
+      "name": "Bàn phím wireless Logitech",
+      "category": "Phụ kiện",
+      "importPrice": 1200000,
+      "salePrice": 1800000,
+      "description": "Bàn phím không dây siêu mỏng với pin 12 tháng",
+      "image": ""
+    },
+    {
+      "id": "27",
+      "code": "PK012",
+      "name": "Chuột máy tính HP",
+      "category": "Phụ kiện",
+      "importPrice": 250000,
+      "salePrice": 450000,
+      "description": "Chuột quang học 2.4GHz với design thoải mái",
+      "image": ""
+    },
+    {
+      "id": "28",
+      "code": "PK013",
+      "name": "Hub USB 4 cổng",
+      "category": "Phụ kiện",
+      "importPrice": 200000,
+      "salePrice": 350000,
+      "description": "Hub USB 3.0 mở rộng cổng cho laptop",
+      "image": ""
+    },
+    {
+      "id": "29",
+      "code": "PK014",
+      "name": "Túi chống sốc laptop 15 inch",
+      "category": "Phụ kiện",
+      "importPrice": 250000,
+      "salePrice": 450000,
+      "description": "Túi bảo vệ laptop với lớp đệm EVA cao cấp",
+      "image": ""
+    },
+    {
+      "id": "30",
+      "code": "PK015",
+      "name": "Webcam HD 1080p",
+      "category": "Phụ kiện",
+      "importPrice": 400000,
+      "salePrice": 650000,
+      "description": "Webcam Full HD với micro tích hợp cho làm việc",
+      "image": ""
+    },
+    {
+      "id": "31",
+      "code": "PK016",
+      "name": "Loa bluetooth nhỏ gọn",
+      "category": "Phụ kiện",
+      "importPrice": 300000,
+      "salePrice": 500000,
+      "description": "Loa bluetooth chống nước IP67 với bass mạnh",
+      "image": ""
+    },
+    {
+      "id": "32",
+      "code": "PK017",
+      "name": "Bộ tản nhiệt laptop",
+      "category": "Phụ kiện",
+      "importPrice": 200000,
+      "salePrice": 350000,
+      "description": "Bộ tản nhiệt gồm 5 quạt làm mát máy tính",
+      "image": ""
+    },
+    {
+      "id": "33",
+      "code": "PK018",
+      "name": "Dán cscreen protector",
+      "category": "Phụ kiện",
+      "importPrice": 50000,
+      "salePrice": 100000,
+      "description": "Miếng dán bảo vệ màn hình chống xước",
+      "image": ""
+    },
+    {
+      "id": "34",
+      "code": "PK019",
+      "name": "Giá đỡ điện thoại",
+      "category": "Phụ kiện",
+      "importPrice": 80000,
+      "salePrice": 150000,
+      "description": "Giá đỡ điện thoại 360 độ có thể gập lại",
+      "image": ""
+    },
+    {
+      "id": "35",
+      "code": "PK020",
+      "name": "Màn hình cảm ứng 10 inch",
+      "category": "Phụ kiện",
+      "importPrice": 2000000,
+      "salePrice": 3200000,
+      "description": "Màn hình cảm ứng di động kết nối USB-C",
+      "image": ""
+    },
+    {
+      "id": "36",
+      "code": "TP008",
+      "name": "Hạt điều rang muối",
+      "category": "Thực phẩm",
+      "importPrice": 120000,
+      "salePrice": 180000,
+      "description": "Hạt điều Việt Nam rang muối giòn ngon",
+      "image": ""
+    },
+    {
+      "id": "37",
+      "code": "TP009",
+      "name": "Bánh quy ít đường",
+      "category": "Thực phẩm",
+      "importPrice": 60000,
+      "salePrice": 90000,
+      "description": "Bánh quy không đường chế biến từ ngô nguyên chất",
+      "image": ""
+    },
+    {
+      "id": "38",
+      "code": "TP010",
+      "name": "Dâu tây tươi nhập khẩu",
+      "category": "Thực phẩm",
+      "importPrice": 180000,
+      "salePrice": 280000,
+      "description": "Dâu tây tươi từ các vải đặc sản",
+      "image": ""
+    },
+    {
+      "id": "39",
+      "code": "TP011",
+      "name": "Mứt cam 300g",
+      "category": "Thực phẩm",
+      "importPrice": 80000,
+      "salePrice": 120000,
+      "description": "Mứt cam handmade không chất bảo quản",
+      "image": ""
+    },
+    {
+      "id": "40",
+      "code": "TP012",
+      "name": "Hạt macca nướu tẩm đường",
+      "category": "Thực phẩm",
+      "importPrice": 200000,
+      "salePrice": 320000,
+      "description": "Hạt macca tân tạo từ Úc tẩm đường nguyên chất",
+      "image": ""
+    },
+    {
+      "id": "41",
+      "code": "TP013",
+      "name": "Sữa hạt sen và yến",
+      "category": "Thực phẩm",
+      "importPrice": 90000,
+      "salePrice": 150000,
+      "description": "Sữa hạt sen yến sào pha sẵn bổ dưỡng",
+      "image": ""
+    },
+    {
+      "id": "42",
+      "code": "TP014",
+      "name": "Cơm lắc cà chua",
+      "category": "Thực phẩm",
+      "importPrice": 120000,
+      "salePrice": 200000,
+      "description": "Cơm lắc ăn liền với vị cà chua đặc biệt",
+      "image": ""
+    },
+    {
+      "id": "43",
+      "code": "TP015",
+      "name": "Mủ ba khoai lang",
+      "category": "Thực phẩm",
+      "importPrice": 60000,
+      "salePrice": 100000,
+      "description": "Mủ ba khoai lang tươi không đường",
+      "image": ""
+    },
+    {
+      "id": "44",
+      "code": "TP016",
+      "name": "Khoai tây chiên vị cộng",
+      "category": "Thực phẩm",
+      "importPrice": 50000,
+      "salePrice": 85000,
+      "description": "Khoai tây chiên vị cong giòn khoai cốm",
+      "image": ""
+    },
+    {
+      "id": "45",
+      "code": "TP017",
+      "name": "Xoài cơm Đà Lạt",
+      "category": "Thực phẩm",
+      "importPrice": 100000,
+      "salePrice": 180000,
+      "description": "Xoài cơm ngon từ Đà Lạt, mùi thơm đặc biệt",
+      "image": ""
+    },
+    {
+      "id": "46",
+      "code": "TP018",
+      "name": "Nho không hạt tím",
+      "category": "Thực phẩm",
+      "importPrice": 150000,
+      "salePrice": 250000,
+      "description": "Nho tím không hạt ngọt ngon nhập khẩu",
+      "image": ""
+    },
+    {
+      "id": "47",
+      "code": "DU007",
+      "name": "Nước lọc tinh khiết",
+      "category": "Đồ uống",
+      "importPrice": 15000,
+      "salePrice": 25000,
+      "description": "Nước lọc tinh khiết 500ml lành mạnh",
+      "image": ""
+    },
+    {
+      "id": "48",
+      "code": "DU008",
+      "name": "Cà phê đen đá",
+      "category": "Đồ uống",
+      "importPrice": 12000,
+      "salePrice": 30000,
+      "description": "Cà phê đen pha sẵn đá lạnh thơm ngon",
+      "image": ""
+    },
+    {
+      "id": "49",
+      "code": "DU009",
+      "name": "Trà hoa quỳnh",
+      "category": "Đồ uống",
+      "importPrice": 40000,
+      "salePrice": 70000,
+      "description": "Trà hoa quỳnh tươi bổ dưỡng sức khỏe",
+      "image": ""
+    },
+    {
+      "id": "50",
+      "code": "DU010",
+      "name": "Kombucha dâu tây",
+      "category": "Đồ uống",
+      "importPrice": 60000,
+      "salePrice": 100000,
+      "description": "Kombucha lên men tự nhiên vị dâu tây",
+      "image": ""
+    },
+    {
+      "id": "51",
+      "code": "DU011",
+      "name": "Nước ép nho tím",
+      "category": "Đồ uống",
+      "importPrice": 50000,
+      "salePrice": 80000,
+      "description": "Nước ép nho tím 100% không đường nguyên chất",
+      "image": ""
+    },
+    {
+      "id": "52",
+      "code": "DU012",
+      "name": "Soda chanh lemongrass",
+      "category": "Đồ uống",
+      "importPrice": 30000,
+      "salePrice": 55000,
+      "description": "Soda tự nhiên từ chanh và sả thơm mát",
+      "image": ""
+    },
+    {
+      "id": "53",
+      "code": "DU013",
+      "name": "Sữa cà phê đặc sánh",
+      "category": "Đồ uống",
+      "importPrice": 25000,
+      "salePrice": 50000,
+      "description": "Sữa cà phê đặc sánh thơm mà độ ngộ",
+      "image": ""
+    },
+    {
+      "id": "54",
+      "code": "DU014",
+      "name": "Trà sen hoang dã",
+      "category": "Đồ uống",
+      "importPrice": 45000,
+      "salePrice": 75000,
+      "description": "Trà sen hoang dã pha sẵn bổ máu",
+      "image": ""
+    },
+    {
+      "id": "55",
+      "code": "DU015",
+      "name": "Nước mía tươi",
+      "category": "Đồ uống",
+      "importPrice": 20000,
+      "salePrice": 40000,
+      "description": "Nước mía tươi ép tự nhiên không đường",
+      "image": ""
+    },
+    {
+      "id": "56",
+      "code": "DU016",
+      "name": "Sinh tố dâu chuối",
+      "category": "Đồ uống",
+      "importPrice": 35000,
+      "salePrice": 65000,
+      "description": "Sinh tố dâu chuối đông lạnh bổ dưỡng",
+      "image": ""
+    },
+    {
+      "id": "57",
+      "code": "DU017",
+      "name": "Matcha latte nóng",
+      "category": "Đồ uống",
+      "importPrice": 55000,
+      "salePrice": 95000,
+      "description": "Matcha latte pha sẵn nóng đặc sánh",
+      "image": ""
+    },
+    {
+      "id": "58",
+      "code": "DU018",
+      "name": "Cacao sữa ấm",
+      "category": "Đồ uống",
+      "importPrice": 45000,
+      "salePrice": 80000,
+      "description": "Cacao sữa ấm nóng hỗ trợ giấc ngủ",
+      "image": ""
+    },
+    {
+      "id": "462d",
+      "code": "SCP175",
+      "name": "Trà sữa lúa mạch kem cheese",
+      "category": "Đồ uống",
+      "importPrice": 12000,
+      "salePrice": 30000,
+      "description": "1 cốc thì... thì... Không ăn thua !!!",
+      "image": ""
+    },
+    {
+      "id": "91a0",
+      "code": "Susan0175",
+      "name": "Thầy giáo ba",
+      "category": "Đồ uống",
+      "importPrice": 200,
+      "salePrice": 150000000,
+      "description": "Ba gà kenne 1 vs 5",
       "image": ""
     }
   ]

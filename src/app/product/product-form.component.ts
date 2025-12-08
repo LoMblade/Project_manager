@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { NotificationService } from '../services/notification.service';
 import { Product } from '../models/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -29,7 +30,8 @@ export class ProductFormComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -40,11 +42,13 @@ export class ProductFormComponent implements OnInit {
 
     if (id) {
       this.isEdit = true;
-      console.log('Loading product with id:', id, 'parsed as:', +id);
+      
+      // Convert id to number, but accept both string and number from db.json
+      const numericId = Number(id);
+      console.log('Loading product with id:', id, 'parsed as:', numericId);
 
-      // Check if ID is valid
-      const numericId = +id;
-      if (isNaN(numericId)) {
+      // Check if ID is valid number
+      if (!Number.isInteger(numericId) || numericId <= 0) {
         console.error('Invalid ID format:', id);
         alert('ID sản phẩm không hợp lệ!');
         this.router.navigate(['/product/list']);
@@ -63,13 +67,13 @@ export class ProductFormComponent implements OnInit {
             }
           } else {
             console.error('Product not found (null response) for ID:', numericId);
-            alert('Không tìm thấy sản phẩm!');
+            this.notificationService.error('Không tìm thấy sản phẩm!');
             this.router.navigate(['/product/list']);
           }
         },
         error: (err) => {
           console.error('Error loading product with ID:', numericId, 'Error:', err);
-          alert('Không tìm thấy sản phẩm!');
+          this.notificationService.error('Không tìm thấy sản phẩm!');
           this.router.navigate(['/product/list']);
         }
       });
@@ -96,16 +100,17 @@ export class ProductFormComponent implements OnInit {
         console.log('Product saved successfully:', result);
 
         // Show success message
-        const message = this.isEdit ? 'Cập nhật thành công!' : 'Thêm hàng hóa thành công!';
-        alert(message);
+        const message = this.isEdit ? 'Cập nhật sản phẩm thành công!' : 'Thêm sản phẩm thành công!';
+        this.notificationService.success(message);
 
-        // Navigate back to product list
+        // Navigate back to product list and update local data
+        sessionStorage.setItem('updatedProduct', JSON.stringify(result));
         console.log('Navigating to product list...');
         this.router.navigate(['/product/list']);
       },
       error: (err) => {
         console.error('Submit error:', err);
-        alert('Có lỗi xảy ra! Vui lòng thử lại.');
+        this.notificationService.error('Có lỗi xảy ra! Vui lòng thử lại.');
       }
     });
   }

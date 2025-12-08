@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractContro
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { NotificationService } from '../services/notification.service';
 
 // Custom validator để kiểm tra mật khẩu xác nhận
 export function passwordMatchValidator(control: AbstractControl): { [key: string]: any } | null {
@@ -30,7 +31,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -49,17 +51,23 @@ export class RegisterComponent {
     const { email, password, confirmPassword } = this.registerForm.value;
 
     if (!email || !password || !confirmPassword) {
-      this.errorMessage = 'Vui lòng điền đầy đủ thông tin';
+      const msg = 'Vui lòng điền đầy đủ thông tin';
+      this.errorMessage = msg;
+      this.notificationService.warning(msg);
       return;
     }
 
     if (password !== confirmPassword) {
-      this.errorMessage = 'Mật khẩu xác nhận không khớp';
+      const msg = 'Mật khẩu xác nhận không khớp';
+      this.errorMessage = msg;
+      this.notificationService.warning(msg);
       return;
     }
 
     if (password.length < 6) {
-      this.errorMessage = 'Mật khẩu phải có ít nhất 6 ký tự';
+      const msg = 'Mật khẩu phải có ít nhất 6 ký tự';
+      this.errorMessage = msg;
+      this.notificationService.warning(msg);
       return;
     }
 
@@ -71,13 +79,16 @@ export class RegisterComponent {
       next: (response) => {
         this.isLoading = false;
         if (response.success) {
+          this.notificationService.success('Đăng ký thành công! Chuyển sang trang đăng nhập...');
           // Chuyển sang trang đăng nhập sau khi đăng ký thành công
           this.router.navigate(['/login']);
         }
       },
       error: (error) => {
         this.isLoading = false;
-        this.errorMessage = error.message || 'Đăng ký thất bại';
+        const message = error.message || 'Đăng ký thất bại';
+        this.errorMessage = message;
+        this.notificationService.error(message);
       }
     });
   }

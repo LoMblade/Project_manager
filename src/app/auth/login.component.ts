@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -38,13 +40,16 @@ export class LoginComponent {
         next: (response) => {
           this.isLoading = false;
           if (response.success) {
+            this.notificationService.success('Đăng nhập thành công!');
             // Chuyển về trang product/list sau khi đăng nhập thành công
             this.router.navigate(['/product/list']);
           }
         },
         error: (error) => {
           this.isLoading = false;
-          this.errorMessage = error.message || 'Đăng nhập thất bại';
+          const message = error.message || 'Đăng nhập thất bại';
+          this.errorMessage = message;
+          this.notificationService.error(message);
         }
       });
     } else {

@@ -7,7 +7,6 @@
 
 /* ==================== TIÊU ĐỀ – NHỎ HƠN, CĂN TRÁI, ĐẨY LÊN CAO ==================== */
 h2 {
-  /* Gradient tím → hồng giống hệt ảnh bạn gửi */
   background: linear-gradient(90deg, #8b5cf6 0%, #d946ef 60%, #ec4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -32,8 +31,6 @@ h2 {
   margin-top: -1cm !important;     
   margin-bottom: 1.5rem;            
 }
-
-/* Đảm bảo container cha không cắt chữ */
 .page-header,
 .container,
 .container > div {
@@ -94,7 +91,7 @@ h2 {
 
 /* Ô tìm kiếm */
 .input-group {
-  width: 340px;                  /* Rộng hơn một chút cho dễ gõ */
+  width: 340px;                 
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);

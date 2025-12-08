@@ -1,0 +1,24 @@
+<div class="notification-container">
+  <div
+    *ngFor="let notification of notifications"
+    class="notification-item"
+    [ngClass]="'notification-' + notification.type"
+  >
+    <div class="notification-content">
+      <span class="notification-icon" [ngClass]="getIconClass(notification.type)">
+        {{ getIcon(notification.type) }}
+      </span>
+      <div class="notification-text">
+        <p class="notification-message">{{ notification.message }}</p>
+        <span class="notification-time">{{ notification.timestamp | date:'HH:mm:ss' }}</span>
+      </div>
+    </div>
+    <button
+      class="notification-close"
+      (click)="removeNotification(notification.id)"
+      title="Đóng thông báo"
+    >
+      ×
+    </button>
+  </div>
+</div>
